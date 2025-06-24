@@ -1,39 +1,32 @@
 "use client"
 
-import { useState } from "react"
 import { Toaster } from "react-hot-toast"
+import dynamic from 'next/dynamic' // Dynamic ko import karein
+
 import Header from "@/components/Header"
 import FloatingIconsBackground from "@/components/FloatingIconsBackground"
 import HeroSection from "@/components/HeroSection"
-import LendingCard from "@/components/LendingCard"
 import AboutSection from "@/components/AboutSection"
 import Footer from "@/components/Footer"
 
-export default function Home() {
-  const [walletConnected, setWalletConnected] = useState(false)
-  const [walletAddress, setWalletAddress] = useState("")
+// --- YEH HAI IMPORTANT CHANGE ---
+// Hum LendingCard ko dynamically import kar rahe hain aur bata rahe hain
+// ki isko Server-Side Rendering (SSR) ke liye use na karein.
+const LendingCard = dynamic(() => import('@/components/LendingCard'), {
+  ssr: false, 
+})
 
+export default function Home() {
   return (
     <div className="min-h-screen bg-gray-950 text-white font-sans overflow-x-hidden">
       <FloatingIconsBackground />
-
-      <Header
-        walletConnected={walletConnected}
-        walletAddress={walletAddress}
-        setWalletConnected={setWalletConnected}
-        setWalletAddress={setWalletAddress}
-      />
-
+      <Header />
       <HeroSection />
-
       <div className="relative z-10 py-20">
-      <LendingCard  />
+        <LendingCard /> {/* Yeh ab dynamically load hoga */}
       </div>
-
       <AboutSection />
-
       <Footer />
-
       <Toaster
         position="top-right"
         toastOptions={{
