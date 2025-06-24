@@ -1,21 +1,26 @@
-import type { Metadata } from 'next'
+// app/layout.tsx
 import './globals.css'
-import { Providers } from './providers' // Hamara naya provider component import karein
+import dynamic from 'next/dynamic'
 
-export const metadata: Metadata = {
-  title: 'LendFi dApp',
-  
+const Providers = dynamic(() => import('./providers'), {
+  ssr: false,
+  loading: () => null,  // you can swap in a spinner if you like
+})
+
+export const metadata = {
+  title: 'LendFi',
+  description: 'Decentralized lending built on Ethereum',
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en">
       <body>
-        <Providers> {/* Web3Provider ki jagah isko use karein */}
+        <Providers>
           {children}
         </Providers>
       </body>

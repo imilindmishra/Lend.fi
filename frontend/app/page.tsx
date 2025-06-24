@@ -1,19 +1,17 @@
-"use client"
+'use client'
 
-import { Toaster } from "react-hot-toast"
-import dynamic from 'next/dynamic' // Dynamic ko import karein
+import { Toaster } from 'react-hot-toast'
+import dynamic from 'next/dynamic'
 
-import Header from "@/components/Header"
-import FloatingIconsBackground from "@/components/FloatingIconsBackground"
-import HeroSection from "@/components/HeroSection"
-import AboutSection from "@/components/AboutSection"
-import Footer from "@/components/Footer"
+import Header from '@/components/Header'
+import FloatingIconsBackground from '@/components/FloatingIconsBackground'
+import HeroSection from '@/components/HeroSection'
+import AboutSection from '@/components/AboutSection'
+import Footer from '@/components/Footer'
 
-// --- YEH HAI IMPORTANT CHANGE ---
-// Hum LendingCard ko dynamically import kar rahe hain aur bata rahe hain
-// ki isko Server-Side Rendering (SSR) ke liye use na karein.
+// Only client-side
 const LendingCard = dynamic(() => import('@/components/LendingCard'), {
-  ssr: false, 
+  ssr: false,
 })
 
 export default function Home() {
@@ -23,7 +21,7 @@ export default function Home() {
       <Header />
       <HeroSection />
       <div className="relative z-10 py-20">
-        <LendingCard /> {/* Yeh ab dynamically load hoga */}
+        <LendingCard />
       </div>
       <AboutSection />
       <Footer />
@@ -32,9 +30,9 @@ export default function Home() {
         toastOptions={{
           duration: 4000,
           style: {
-            background: "#1f2937",
-            color: "#fff",
-            border: "1px solid #374151",
+            background: '#1f2937',
+            color: '#fff',
+            border: '1px solid #374151',
           },
         }}
       />
