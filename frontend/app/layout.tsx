@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { Web3Provider } from '../context/Web3Context'
+import { Providers } from './providers' // Hamara naya provider component import karein
 
 export const metadata: Metadata = {
-  title: 'Lend.fi',
+  title: 'LendFi dApp',
   
 }
 
@@ -15,11 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Web3Provider>
+        <Providers> {/* Web3Provider ki jagah isko use karein */}
           {children}
-        </Web3Provider>
+        </Providers>
       </body>
-      
     </html>
   )
 }
