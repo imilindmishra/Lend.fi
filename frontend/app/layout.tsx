@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { Web3Provider } from '../context/Web3Context'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'Lend.fi',
+  
 }
 
 export default function RootLayout({
@@ -14,7 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Web3Provider>
+          {children}
+        </Web3Provider>
+      </body>
+      
     </html>
   )
 }
